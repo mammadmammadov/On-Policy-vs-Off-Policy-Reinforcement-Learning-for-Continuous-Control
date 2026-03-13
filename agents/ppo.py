@@ -239,8 +239,13 @@ def compute_policy_loss(ratio: torch.Tensor, advantages: torch.Tensor, clip_coef
     Tip:
         You can use torch.clamp to performing the PPO clipping
     """
+
+    policy_gradient_loss_unclipped = -advantages * ratio
+    policy_gradient_loss_clipped = -advantages * torch.clamp(ratio, 1.0 - clip_coef, 1.0 + clip_coef)
     
-    raise NotImplementedError
+    policy_loss = torch.max(policy_gradient_loss_unclipped, policy_gradient_loss_clipped).mean()
+
+    
     return policy_loss 
 
 
