@@ -242,7 +242,7 @@ def compute_policy_loss(ratio: torch.Tensor, advantages: torch.Tensor, clip_coef
 
     policy_gradient_loss_unclipped = -advantages * ratio
     policy_gradient_loss_clipped = -advantages * torch.clamp(ratio, 1.0 - clip_coef, 1.0 + clip_coef)
-    
+
     policy_loss = torch.max(policy_gradient_loss_unclipped, policy_gradient_loss_clipped).mean()
 
     
@@ -260,7 +260,8 @@ def compute_value_loss(new_values: torch.Tensor, returns: torch.Tensor) -> torch
         Scalar loss tensor.
     """
    
-    raise NotImplementedError
+    v_loss = ((new_values - returns) ** 2).mean()
+
     return v_loss
 
 
