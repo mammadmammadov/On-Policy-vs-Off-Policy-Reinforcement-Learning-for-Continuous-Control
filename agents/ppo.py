@@ -218,7 +218,9 @@ def compute_ratio(new_logprob: torch.Tensor, old_logprob: torch.Tensor) -> tuple
         ratio    : exp(logratio),         shape (minibatch,)
     """
     
-    raise NotImplementedError
+    logratio = new_logprob - old_logprob
+    ratio = torch.exp(logratio)
+
     return logratio, ratio
 
 
