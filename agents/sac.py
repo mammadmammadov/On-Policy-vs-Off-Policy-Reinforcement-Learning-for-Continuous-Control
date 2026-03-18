@@ -402,7 +402,7 @@ def compute_q_target(
     Returns:
         Scalar-equivalent 1-D target tensor, shape (batch,).
     """
-    raise NotImplementedError
+    q_target = rewards + gamma * (1 - dones) * min_qf_next_target 
     return q_target
 
 def compute_actor_loss(
@@ -423,7 +423,7 @@ def compute_actor_loss(
     Returns:
         Scalar loss tensor.
     """
-    raise NotImplementedError
+    actor_loss = (alpha * log_pi - min_qf_pi).mean()
     return actor_loss
 
 
@@ -442,7 +442,8 @@ def compute_alpha_loss(
     Returns:
         Scalar loss tensor.
     """
-    raise NotImplementedError
+    # target_entropy is constant
+    alpha_loss = -(log_alpha * (log_pi + target_entropy)).mean()
     return alpha_loss
 
 
@@ -461,8 +462,8 @@ def soft_update(net: nn.Module, target_net: nn.Module, tau: float) -> None:
     Tip:
         You can use use params.data.copy_ to do this see for example: https://docs.pytorch.org/docs/stable/generated/torch.Tensor.copy_.html
     """
-    raise NotImplementedError # Remove once implemented
-
+    for p, target_p in zip(net.parameters(), target_net.parameters()):
+        target_p.data.copy_(tau * p.data + (1 - tau) * target_p.data)
 
 # ──────────────────────────────────────────────────────────────────────────────
 
