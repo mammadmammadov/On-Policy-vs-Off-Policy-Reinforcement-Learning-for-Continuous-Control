@@ -188,7 +188,7 @@ If you're using VS Code and the `.venv` kernel doesn't appear, run `uv run jupyt
 
 ## Acknowledgements
 
-This project was completed as pair coursework for the Reinforcement Learning course at the University of Edinburgh. The skeleton code (environment wrappers, training loops and notebooks) was provided by the course staff and is adapted from [CleanRL](https://github.com/vwxyzjn/cleanrl).
+This project was completed as pair coursework for the **Robot & Reinforcement Learning** course at the University of Edinburgh. The skeleton code (environment wrappers, training loops and notebooks) was provided by the course staff and is adapted from [CleanRL](https://github.com/vwxyzjn/cleanrl).
 
 ### References
 
